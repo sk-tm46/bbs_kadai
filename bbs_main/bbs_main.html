@@ -1,21 +1,3 @@
-<?php
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['member_login'])==false)
-{
-	print 'ゲストさん';
-	print '<a href="..\bbs_login\bbs_login.html"> ログイン </a><br />';
-	print '<br/>';
-}
-else
-{
-	print $_SESSION['member_name'];
-	print 'さん　';
-	print '<a href="bbs_logout.php"> ログイン中</a><br />';
-	print '<br />';
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +5,7 @@ else
 <title> ふれあい掲示板 </title>
 </head>
 <body>
-
+<?php include('bbs_main.php'); ?>
 TYS掲示板<br/>
 <br/>
 コメント<br/>

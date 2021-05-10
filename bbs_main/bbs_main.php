@@ -11,7 +11,7 @@ else
 {
 	print $_SESSION['member_name'];
 	print 'さん　';
-	print '<a href="bbs_logout.php"> ログイン中</a><br />';
+	print '<a href="..\bbs_login\bbs_logout.php"> ログイン中</a><br />';
 	print '<br />';
 }
 ?>
@@ -23,7 +23,6 @@ else
 <title> ふれあい掲示板 </title>
 </head>
 <body>
-
 TYS掲示板<br/>
 <br/>
 コメント<br/>
@@ -33,12 +32,6 @@ TYS掲示板<br/>
 Preview:<br>
 <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
 </p>
-//<?php
-//function bbs_reload()
-//{
-//	print 'こんにちは';
-//}
-//?>
 
 <script>
 function previewImage(obj)
@@ -49,9 +42,10 @@ function previewImage(obj)
 	});
 	fileReader.readAsDataURL(obj.files[0]);
 }
-
 </script>
-<input type="submit" value="投稿">
-<input type="button" value="最新の投稿を読み込む" onclick="bbs_reload()" >
+
+<form method="post">
+<input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><br/>
+<input type="submit" formaction="bbs_reload.php" name="add" value="最新を読み込む">
 </body>
 </html>
