@@ -17,7 +17,7 @@ if( $bbs_photo['size'] > 0)
 }
 else
 {
-	$bbs_photo=null;
+	$bbs_photo='';
 }
 
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
@@ -39,6 +39,6 @@ http_response_code( 301 ) ;
 
 // リダイレクト
 header( "Location: bbs_main.php" ) ;
-exit ;
+exit();
 
 ?>

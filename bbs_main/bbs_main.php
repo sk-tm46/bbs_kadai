@@ -31,7 +31,7 @@ TYS掲示板<br/>
 <input type="text" name="comment" style"width:200px"><br/>
 <input type="file" name="photo" style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><br/>
-<input type="submit" formaction="bbs_reload.php" name="add" value="最新を読み込む">
+<input type="submit" formaction="bbs_reload.php" name="reload" value="最新を読み込む">
 </form>
 </body>
 </html>
