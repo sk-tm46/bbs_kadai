@@ -16,7 +16,7 @@ $password = '';
 $dbh = new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql='SELECT name FROM mst_user WHERE name=\'?\' AND pass=\'?\'';
+$sql='SELECT name FROM mst_user WHERE name=? AND pass=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$bbs_name;
 $data[]=$bbs_pass;
@@ -28,6 +28,7 @@ $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if($rec==false)
 {
+	echo $rec;
 	echo $bbs_name;
 	echo $bbs_pass;
 	print 'ユーザー名またはパスワードが間違っています。<br />';

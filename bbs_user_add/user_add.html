@@ -28,7 +28,7 @@ function checkUserInfo()
 
 	var name_len = name.length;
 	var pass1_len = pass1.length;
-	var pass2Len = pass2.length;
+	var pass2_len = pass2.length;
 
 if(name=='')
 {
@@ -43,18 +43,29 @@ else if(name_len >= 31)
 
 if(pass1=='')
 {
-	document.getElementById("rename").innerText = "パスワードが入力されていません。";
+	document.getElementById("repass1").innerText = "パスワードが入力されていません。";
 	return false;
 }
-else if(pass_len >= 15 && pass_len.match(/^[A-Za-z0-9]*$/) == false)
+else if(pass1_len >= 15 && pass1_len.match(/^[A-Za-z0-9]*$/) == false)
 {
-	document.getElementById("rename").innerText = "パスワードは半角英数字の15文字以内で入力してください。";
+	document.getElementById("repass1").innerText = "パスワードは半角英数字の15文字以内で入力してください。";
+	return false;
+}
+
+if(pass2=='')
+{
+	document.getElementById("repass2").innerText = "パスワードが入力されていません。";
+	return false;
+}
+else if(pass2_len >= 15 && pass2_len.match(/^[A-Za-z0-9]*$/) == false)
+{
+	document.getElementById("repass2").innerText = "パスワードは半角英数字の15文字以内で入力してください。";
 	return false;
 }
 
 if(pass1!=pass2)
 {
-	document.getElementById("rename").innerText = "パスワードが一致しません。";
+	document.getElementById("repass2").innerText = "パスワードが一致しません。";
 	return false;
 }
 

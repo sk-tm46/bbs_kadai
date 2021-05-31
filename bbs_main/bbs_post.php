@@ -9,9 +9,10 @@ $post=sanitize($_POST);
 $bbs_comment=$post['comment'];
 $bbs_photo=$_FILES['photo'];
 
-if( $bbs_photo['size'] > 0)
+if( $bbs_photo != null)
 {
 	move_uploaded_file($bbs_photo['tmp_name'],'./gazou/'.$bbs_photo['name']);
+	$bbs_photo=$bbs_photo['name'];
 }
 else
 {
