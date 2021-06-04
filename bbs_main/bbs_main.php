@@ -39,10 +39,11 @@ $stmt->execute();
 
 $dbh = null;
 
+$count = 0;
+
 while(true)
 {
 	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-	$count = 0;
 	
 	if($rec==false)
 	{
@@ -86,10 +87,14 @@ TYS掲示板<br/>
 {
 ?>
 	<tr>
-	<?php print $bbs_post_no[$i]; ?>
-	<?php print $bbs_post_comment[$i] ?>
-	<td><?php print $bbs_post_image[$i] ?></td>
+	<td><?php print $bbs_post_no[$i]; ?>
+	<?php print $bbs_post_comment[$i]; ?><br/>
+	<?php if($bbs_post_image[$i] != "")
+	{
+		echo "<img src= '".$bbs_post_image[$i]."' title= '".$i."' width='400' height='250'>";
+	 } ?>	
 	</tr>
+	<br/>
 <?php
 }
 ?>
