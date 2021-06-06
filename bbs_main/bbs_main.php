@@ -11,7 +11,7 @@ else
 {
 	print $_SESSION['member_name'];
 	print 'さん　';
-	print '<a href="..\bbs_login\bbs_logout.php"> ログイン中</a><br />';
+	print '<a href="bbs_logout.php"> ログイン中</a><br />';
 	print '<br />';
 }
 ?>
@@ -57,7 +57,7 @@ while(true)
 		}
 		else
 		{
-			$bbs_post_image[$count]='<img src="gazou/'.$rec['image'].'">';
+			$bbs_post_image[$count]='<img src="gazou/'.$rec['image'].'" width="400" height="250">';
 		} //else終わり
 	$count = $count + 1;
 }
@@ -91,7 +91,7 @@ TYS掲示板<br/>
 	<?php print $bbs_post_comment[$i]; ?><br/>
 	<?php if($bbs_post_image[$i] != "")
 	{
-		echo "<img src= '".$bbs_post_image[$i]."' title= '".$i."' width='400' height='250'>";
+		print $bbs_post_image[$i];
 	 } ?>	
 	</tr>
 	<br/>

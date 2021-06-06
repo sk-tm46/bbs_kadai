@@ -37,7 +37,7 @@ if($rec==false)
 else
 {
 	session_start();
-	$_SESSION['login']=1;
+	$_SESSION['member_login']=1;
 	$_SESSION['member_name']=$rec['name'];
 	header('Location: ..\bbs_main\bbs_main.php');
 	exit();
