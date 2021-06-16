@@ -50,6 +50,8 @@ while(true)
 		break;
 	}
 	$bbs_post_no[$count] = $rec['no'];
+	$bbs_post_name[$count] = $rec['name'];
+	$bbs_post_date[$count] = $rec['date'];
 	$bbs_post_comment[$count] = $rec['comment'];
 		if($rec['image']=='')
 		{
@@ -80,26 +82,30 @@ TYS掲示板<br/>
 <input type="text" name="comment" style"width:200px"><br/>
 <input type="file" name="photo" id="sFiles"  style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
-<input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>
-
 <table border="1">
 <?php for($i=0;$i<$bbs_post_count;$i++)
 {
 ?>
 	<tr>
-	<td><?php print $bbs_post_no[$i]; ?>
-	<?php print $bbs_post_comment[$i]; ?><br/>
+	<td><?php print $bbs_post_no[$i];
+	print ':';
+	print $bbs_post_name[$i];
+	print ':';
+	print $bbs_post_date[$i]; ?><br/>
+
+	<?php print $bbs_post_comment[$i]; ?>
+	
 	<?php if($bbs_post_image[$i] != "")
 	{
 		print $bbs_post_image[$i];
 	 } ?>	
 	</tr>
-	<br/>
 <?php
 }
 ?>
 </table>
 
+<input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>
 <script>
 function checkPhotoInfo()
 {

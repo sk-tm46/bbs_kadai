@@ -8,6 +8,7 @@ require_once('../common/common.php');
 $post=sanitize($_POST);
 $bbs_comment=$post['comment'];
 $bbs_photo=$_FILES['photo'];
+$bbs_name=$_SESSION['member_name'];
 
 if( $bbs_photo != null)
 {
@@ -25,10 +26,11 @@ $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = 'INSERT INTO mst_bbs(comment,image) VALUES (?,?)';
+$sql = 'INSERT INTO mst_bbs(comment,image,name) VALUES (?,?,?)';
 $stmt = $dbh->prepare($sql);
 $data[] = $bbs_comment;
 $data[] = $bbs_photo;
+$data[] = $bbs_name;
 $stmt->execute($data);
 
 $dbh = null;
