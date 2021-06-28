@@ -10,29 +10,36 @@ $bbs_comment=$post['comment'];
 $bbs_photo=$_FILES['photo'];
 $bbs_name=$_SESSION['member_name'];
 
-$reply_judg = substr($bbs_comment, 0, 2);
-if($reply_judg == ">>")
+$search_str = "&gt;&gt;";
+$result = strpos($bbs_comment , $search_str);
+$i = $result;
+$bbs_replyno = '';
+
+if($result === false)
 {
-	$i = 3;
-	$no = "";
+	$bbs_replyno = 99;
+}
+else
+{
+	$i = $i + 8;
+	$no　= 0;
 	while(true)
 	{
 		//i文字目を取り出す
-		$reply_no_judg = substr($bbs_comment, $i, 1);
-		
+		$reply_judg = mb_substr($bbs_comment, $i, 1);
 		//数字か判定
-		if(is_numeric($bbs_comment)
+		if(is_numeric($reply_judg))
 		{
-			$no = $no . $reply_no_judg;
+			$no .= $reply_judg;
+			$i = $i + 1;
 		}
 		else
 		{
-			//数字ではない場合抜ける
-			$bbs_replyno = $no;
+			//数字でなくなったら抜ける
 			break;
 		}
-		$i = $i + 1;
 	}
+	$bbs_replyno = $reply_judg;
 }
 
 
