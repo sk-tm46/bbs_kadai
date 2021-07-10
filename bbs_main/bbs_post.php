@@ -13,7 +13,7 @@ $bbs_name=$_SESSION['member_name'];
 $search_str = "&gt;&gt;";
 $result = strpos($bbs_comment , $search_str);
 $i = $result;
-$bbs_replyno = '';
+$bbs_replyno = "";
 
 if($result === false)
 {
@@ -22,7 +22,7 @@ if($result === false)
 else
 {
 	$i = $i + 8;
-	$no　= 0;
+	$no　= "";
 	while(true)
 	{
 		//i文字目を取り出す
@@ -39,7 +39,7 @@ else
 			break;
 		}
 	}
-	$bbs_replyno = $reply_judg;
+	$bbs_replyno = $no;
 }
 
 
