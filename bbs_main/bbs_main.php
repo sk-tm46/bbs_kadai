@@ -44,6 +44,7 @@ $stmt->execute();
 $dbh = null;
 
 $count = 0;
+$bbs_post_count = 0;
 
 while(true)
 {
@@ -66,9 +67,8 @@ while(true)
 			$bbs_post_image[$count]='<img src="gazou/'.$rec['image'].'" width="400" height="250">';
 		} //else終わり
 	$count = $count + 1;
+	$bbs_post_count = count($bbs_post_no);
 }
-
-$bbs_post_count = count($bbs_post_no);
 
 }
 catch (Exception $e)
@@ -86,6 +86,9 @@ TYS掲示板<br/>
 <input type="text" name="comment" style"width:200px"><br/>
 <input type="file" name="photo" id="sFiles"  style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
+
+<?php if($bbs_post_count == 0): ?>
+<?php else: ?>
 <table border="1">
 <?php for($i=0;$i<$bbs_post_count;$i++)
 {
@@ -102,12 +105,14 @@ TYS掲示板<br/>
 	<?php if($bbs_post_image[$i] != "")
 	{
 		print $bbs_post_image[$i];
-	 } ?>	
+	 } ?>
+	</td>
 	</tr>
 <?php
 }
 ?>
 </table>
+<?php endif; ?>
 
 <input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>
 <script>
