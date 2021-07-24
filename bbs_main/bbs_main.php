@@ -28,6 +28,8 @@ else
 </head>
 <body>
 
+<link rel="stylesheet" href="popapp.css">
+
 <?php
 //投稿内容を取得する
 try{
@@ -89,12 +91,17 @@ TYS掲示板<br/>
 
 <?php if($bbs_post_count == 0): ?>
 <?php else: ?>
+
+
 <table border="1">
+<div class="css-popapp">
 <?php for($i=0;$i<$bbs_post_count;$i++)
 {
 ?>
 	<tr>
-	<td><?php print $bbs_post_no[$i];
+	<td>
+	<p class="text">
+	<?php print $bbs_post_no[$i];
 	print ':';
 	print $bbs_post_name[$i];
 	print ':';
@@ -106,12 +113,19 @@ TYS掲示板<br/>
 	{
 		print $bbs_post_image[$i];
 	 } ?>
+	</p>
+	<p class="popapp">
+	コメント内のレス番にアンカーを付けて、そのコメントを表示させたい。
+	</p>
 	</td>
 	</tr>
 <?php
 }
 ?>
+
+</div>
 </table>
+
 <?php endif; ?>
 
 <input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>
