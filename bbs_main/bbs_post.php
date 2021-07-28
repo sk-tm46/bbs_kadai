@@ -17,12 +17,12 @@ $bbs_replyno = "";
 
 if($result === false)
 {
-	$bbs_replyno = 99;
+	$bbs_replyno = 0;
 }
 else
 {
 	$i = $i + 8;
-	$no　= "";
+	$no = "";
 	while(true)
 	{
 		//i文字目を取り出す
@@ -30,7 +30,7 @@ else
 		//数字か判定
 		if(is_numeric($reply_judg))
 		{
-			$no .= $reply_judg;
+			$no.=$reply_judg;
 			$i = $i + 1;
 		}
 		else
