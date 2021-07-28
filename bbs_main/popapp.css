@@ -8,33 +8,30 @@ body {
     }
 
     .text {
-      width: 400px;
       position: relative;
       border: 1px solid #ccc;
     }
     .popapp {
       display: none;
-      width: 400px;
       position: absolute;
-      top: 0;
+      top: 110;
       left: 200px;
       padding: 16px;
-      border-radius: 5px;
-      background: #33cc99;
-      color: #fff;
+      border-radius: 100px;
+      background: #f0f0f0;
+      color: #000000;
       font-weight: bold;
     }
     .popapp:after {
       position: absolute;
       width: 0;
-      height: 0;
+      height: 200;
       left: 0;
       bottom: -19px;
       margin-left: 10px;
-      border: solid transparent;
-      border-color: rgba(51, 204, 153, 0);
-      border-top-color: #33cc99;
-      border-width: 10px;
+      
+      border-top-color: #f0f0f0;
+      border-width: 400px;
       pointer-events: none;
       content: " ";
     }

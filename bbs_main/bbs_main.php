@@ -60,6 +60,7 @@ while(true)
 	$bbs_post_name[$count] = $rec['name'];
 	$bbs_post_date[$count] = $rec['date'];
 	$bbs_post_comment[$count] = $rec['comment'];
+	$bbs_post_replyno[$count] = $rec['replyno'];
 		if($rec['image']=='')
 		{
 			$bbs_post_image[$count]='';
@@ -92,7 +93,6 @@ TYS掲示板<br/>
 <?php if($bbs_post_count == 0): ?>
 <?php else: ?>
 
-
 <table border="1">
 <div class="css-popapp">
 <?php for($i=0;$i<$bbs_post_count;$i++)
@@ -106,17 +106,28 @@ TYS掲示板<br/>
 	print $bbs_post_name[$i];
 	print ':';
 	print $bbs_post_date[$i]; ?><br/>
-
 	<?php print $bbs_post_comment[$i]; ?>
-	
 	<?php if($bbs_post_image[$i] != "")
 	{
-		print $bbs_post_image[$i];
-	 } ?>
+        print $bbs_post_image[$i];
+	} ?>
 	</p>
+	
+	<?php if($bbs_post_replyno[$i] != 0)
+	{ ?>
 	<p class="popapp">
-	コメント内のレス番にアンカーを付けて、そのコメントを表示させたい。
+	<?php
+	$index = $bbs_post_replyno[$i]-1;
+	print $bbs_post_no[$index];
+	print ':';
+	print $bbs_post_name[$index];
+	print ':';
+	print $bbs_post_date[$index];
+	print '<br>';
+	print $bbs_post_comment[$index]; ?>
 	</p>
+	<?php }
+	?>
 	</td>
 	</tr>
 <?php
