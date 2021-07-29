@@ -7,14 +7,14 @@ if(isset($_SESSION['member_login'])==false)
 	$_SESSION['member_name']='ゲスト';
 
 	print $_SESSION['member_name'];
-	print 'さん　';
+	print 'さん';
 	print '<a href="..\bbs_login\bbs_login.html"> ログイン </a><br />';
 	print '<br/>';
 }
 else
 {
 	print $_SESSION['member_name'];
-	print 'さん　';
+	print 'さん';
 	print '<a href="bbs_logout.php"> ログイン中</a><br />';
 	print '<br />';
 }
@@ -86,7 +86,7 @@ TYS掲示板<br/>
 <br/>
 コメント<br/>
 <form method="post" enctype="multipart/form-data">
-<input type="text" name="comment" style"width:200px"><br/>
+<textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br/>
 <input type="file" name="photo" id="sFiles"  style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
 
@@ -109,7 +109,7 @@ TYS掲示板<br/>
 	<?php print $bbs_post_comment[$i]; ?>
 	<?php if($bbs_post_image[$i] != "")
 	{
-        print $bbs_post_image[$i];
+	print $bbs_post_image[$i];
 	} ?>
 	</p>
 	
