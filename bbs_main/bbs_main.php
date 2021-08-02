@@ -17,9 +17,7 @@ else
 	print 'さん';
 	print '<a href="bbs_logout.php"> ログイン中</a><br />';
 	print '<br />';
-}
-?>
-
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +25,8 @@ else
 <title> ふれあい掲示板 </title>
 </head>
 <body>
-
 <link rel="stylesheet" href="popapp.css">
-
 <?php
-//投稿内容を取得する
 try{
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
 $user = 'root';
@@ -48,10 +43,11 @@ $dbh = null;
 $count = 0;
 $bbs_post_count = 0;
 
+require_once('../common/common.php');
+
 while(true)
 {
 	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-	
 	if($rec==false)
 	{
 		break;
@@ -59,7 +55,8 @@ while(true)
 	$bbs_post_no[$count] = $rec['no'];
 	$bbs_post_name[$count] = $rec['name'];
 	$bbs_post_date[$count] = $rec['date'];
-	$bbs_post_comment[$count] = $rec['comment'];
+	$rec_comment=sanitize_br($rec['comment']);
+	$bbs_post_comment[$count] = $rec_comment;
 	$bbs_post_replyno[$count] = $rec['replyno'];
 		if($rec['image']=='')
 		{
@@ -68,36 +65,29 @@ while(true)
 		else
 		{
 			$bbs_post_image[$count]='<img src="gazou/'.$rec['image'].'" width="400" height="250">';
-		} //else終わり
+		}
 	$count = $count + 1;
 	$bbs_post_count = count($bbs_post_no);
 }
-
 }
 catch (Exception $e)
 {
 	print 'ただいま障害により大変ご迷惑をお掛けしております。';
 	exit();
 }
-
 ?>
-
 TYS掲示板<br/>
-<br/>
 コメント<br/>
 <form method="post" enctype="multipart/form-data">
 <textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br/>
-<input type="file" name="photo" id="sFiles"  style"width:400px">
+<input type="file" name="photo" id="sFiles" style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
-
 <?php if($bbs_post_count == 0): ?>
 <?php else: ?>
-
 <table border="1">
 <div class="css-popapp">
 <?php for($i=0;$i<$bbs_post_count;$i++)
-{
-?>
+{?>
 	<tr>
 	<td>
 	<p class="text">
@@ -112,7 +102,6 @@ TYS掲示板<br/>
 	print $bbs_post_image[$i];
 	} ?>
 	</p>
-	
 	<?php if($bbs_post_replyno[$i] != 0)
 	{ ?>
 	<p class="popapp">
@@ -123,22 +112,16 @@ TYS掲示板<br/>
 	print $bbs_post_name[$index];
 	print ':';
 	print $bbs_post_date[$index];
-	print '<br>';
+	print '<br/>';
 	print $bbs_post_comment[$index]; ?>
 	</p>
-	<?php }
-	?>
+	<?php } ?>
 	</td>
 	</tr>
-<?php
-}
-?>
-
+<?php } ?>
 </div>
 </table>
-
 <?php endif; ?>
-
 <input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>
 <script>
 function checkPhotoInfo()
@@ -156,10 +139,8 @@ if(list != null){
 	return false;
 	}
 }
-
 }
 </script>
-
 </form>
 </body>
 </html>
