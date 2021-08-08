@@ -1,6 +1,4 @@
 body {
-      margin: 0;
-      padding: 0;
       white-space: pre-wrap;
     }
     .css-popapp {
@@ -8,6 +6,8 @@ body {
       margin: 0;
     }
     .text {
+      width: 900px;
+      height:50px;
       position: relative;
     }
     .popapp {
@@ -15,7 +15,6 @@ body {
       position: absolute;
       background: #f0f0f0;
       color: #000000;
-      opacity: 1;
       font-weight: bold;
     }
     .popapp:after {

@@ -1,6 +1,16 @@
 <?php
 session_start();
 session_regenerate_id(true);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> ふれあい掲示板 </title>
+<link rel="stylesheet" href="popapp.css">
+</head>
+<body>
+<?php
 if(isset($_SESSION['member_login'])==false)
 {
 	$_SESSION['member_login']=1;
@@ -18,14 +28,6 @@ else
 	print '<a href="bbs_logout.php"> ログイン中</a><br />';
 	print '<br />';
 } ?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title> ふれあい掲示板 </title>
-</head>
-<body>
-<link rel="stylesheet" href="popapp.css">
 <?php
 try{
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
@@ -101,7 +103,7 @@ TYS掲示板<br/>
 	{
 	print $bbs_post_image[$i];
 	} ?>
-	</p>
+</p>
 	<?php if($bbs_post_replyno[$i] != 0)
 	{ ?>
 	<p class="popapp">
@@ -114,7 +116,7 @@ TYS掲示板<br/>
 	print $bbs_post_date[$index];
 	print '<br/>';
 	print $bbs_post_comment[$index]; ?>
-	</p>
+</p>
 	<?php } ?>
 	</td>
 	</tr>
