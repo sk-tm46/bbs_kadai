@@ -1,6 +1,6 @@
-<?php
+<?php 
 session_start();
-session_regenerate_id(true);
+session_regenerate_id(true); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,6 +11,7 @@ session_regenerate_id(true);
 </head>
 <body>
 <?php
+
 if(isset($_SESSION['member_login'])==false)
 {
 	$_SESSION['member_login']=1;
@@ -78,21 +79,20 @@ catch (Exception $e)
 	exit();
 }
 ?>
-TYS掲示板<br/>
-コメント<br/>
+TYS掲示板<br>
+コメント<br>
 <form method="post" enctype="multipart/form-data">
-<textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br/>
+<textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br>
 <input type="file" name="photo" id="sFiles" style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
 <?php if($bbs_post_count == 0): ?>
 <?php else: ?>
 <table border="1">
-<div class="css-popapp">
 <?php for($i=0;$i<$bbs_post_count;$i++)
 {?>
-	<tr>
-	<td>
-	<p class="text">
+<tr>
+<td>
+<p class="text">
 	<?php print $bbs_post_no[$i];
 	print ':';
 	print $bbs_post_name[$i];
@@ -106,7 +106,7 @@ TYS掲示板<br/>
 </p>
 	<?php if($bbs_post_replyno[$i] != 0)
 	{ ?>
-	<p class="popapp">
+<p class="popapp">
 	<?php
 	$index = $bbs_post_replyno[$i]-1;
 	print $bbs_post_no[$index];
@@ -117,11 +117,10 @@ TYS掲示板<br/>
 	print '<br/>';
 	print $bbs_post_comment[$index]; ?>
 </p>
-	<?php } ?>
-	</td>
-	</tr>
 <?php } ?>
-</div>
+</td>
+</tr>
+<?php } ?>
 </table>
 <?php endif; ?>
 <input type="submit" formaction="bbs_main.php" name="reload" value="最新を読み込む"><br/>

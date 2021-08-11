@@ -1,17 +1,17 @@
 body {
       white-space: pre-wrap;
     }
-    .css-popapp {
-      padding: 0;
-      margin: 0;
-    }
+table {
+  width: 300px;
+  height: auto;
+}
     .text {
-      width: 900px;
-      height:50px;
       position: relative;
+      text-align: left;
     }
     .popapp {
       display: none;
+      left: 250px;
       position: absolute;
       background: #f0f0f0;
       color: #000000;
@@ -19,6 +19,11 @@ body {
     }
     .popapp:after {
       position: absolute;
+      width: 0;
+      height: 0;
+      left: 0;
+      bottom: -19px;
+      margin-left: 10px;
       border-top-color: #f0f0f0;
       pointer-events: none;
       content: " ";
