@@ -19,15 +19,15 @@ if(isset($_SESSION['member_login'])==false)
 
 	print $_SESSION['member_name'];
 	print 'さん';
-	print '<a href="..\bbs_login\bbs_login.html"> ログイン </a><br />';
+	print '<a href="..\bbs_login\bbs_login.html"> ログイン </a><br/>';
 	print '<br/>';
 }
 else
 {
 	print $_SESSION['member_name'];
 	print 'さん';
-	print '<a href="bbs_logout.php"> ログイン中</a><br />';
-	print '<br />';
+	print '<a href="bbs_logout.php"> ログイン中</a><br/>';
+	print '<br/>';
 } ?>
 <?php
 try{
@@ -82,43 +82,36 @@ catch (Exception $e)
 TYS掲示板<br>
 コメント<br>
 <form method="post" enctype="multipart/form-data">
-<textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br>
+<textarea name="comment" rows="4" cols="50" wrap="hard"></textarea><br/>
 <input type="file" name="photo" id="sFiles" style"width:400px">
 <input type="submit" formaction="bbs_post.php" name="svpost" value="投稿"><div id="photoMess"></div><br/>
 <?php if($bbs_post_count == 0): ?>
 <?php else: ?>
-<table border="1">
+<table border="1" cellpadding="50">
 <?php for($i=0;$i<$bbs_post_count;$i++)
-{?>
+{
+$bbs_kanma = ':';
+$bbs_result = $bbs_post_no[$i] . $bbs_kanma . $bbs_post_name[$i] . $bbs_kanma . $bbs_post_date[$i] ;
+?>
 <tr>
-<td>
-<p class="text">
-	<?php print $bbs_post_no[$i];
-	print ':';
-	print $bbs_post_name[$i];
-	print ':';
-	print $bbs_post_date[$i]; ?><br/>
-	<?php print $bbs_post_comment[$i]; ?>
-	<?php if($bbs_post_image[$i] != "")
-	{
-	print $bbs_post_image[$i];
-	} ?>
-</p>
-	<?php if($bbs_post_replyno[$i] != 0)
-	{ ?>
-<p class="popapp">
-	<?php
-	$index = $bbs_post_replyno[$i]-1;
-	print $bbs_post_no[$index];
-	print ':';
-	print $bbs_post_name[$index];
-	print ':';
-	print $bbs_post_date[$index];
-	print '<br/>';
-	print $bbs_post_comment[$index]; ?>
-</p>
-<?php } ?>
-</td>
+<td><div class="text"><?php print $bbs_result; ?>
+<br/><?php print $bbs_post_comment[$i];
+if($bbs_post_image[$i] != "")
+{
+print $bbs_post_image[$i];
+} ?></div>
+<?php if($bbs_post_replyno[$i] != 0)
+{ ?>
+<div class="popapp">
+<?php
+$index = $bbs_post_replyno[$i]-1;
+print $bbs_post_no[$index];
+print ':';
+print $bbs_post_name[$index];
+print ':';
+print $bbs_post_date[$index];
+print '<br/>';
+print $bbs_post_comment[$index]; ?></div><?php } ?></td>
 </tr>
 <?php } ?>
 </table>
@@ -131,7 +124,7 @@ function checkPhotoInfo()
 var fileList = document.getElementById("sFiles").files;
 var list = "";
 for(var i=0; i<fileList.length; i++){
-list += "[" + fileList[i].size + " bytes]" + fileList[i].name + "<br>";
+list += "[" + fileList[i].size + " bytes]" + fileList[i].name + "<br/>";
 }
 if(list != null){
 	if( list > 1000000)
