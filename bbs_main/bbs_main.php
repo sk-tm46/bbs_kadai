@@ -36,9 +36,11 @@ $user = 'root';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql = 'SELECT * FROM mst_bbs WHERE 1';
+$sql = 'SELECT * FROM mst_bbs WHERE :num';
 $stmt = $dbh->prepare($sql);
+$stmt->bindValue(':num', 1, PDO::PARAM_INT);
 $stmt->execute();
 
 $dbh = null;
@@ -75,6 +77,7 @@ while(true)
 }
 catch (Exception $e)
 {
+print  $e;
 	print 'ただいま障害により大変ご迷惑をお掛けしております。';
 	exit();
 }

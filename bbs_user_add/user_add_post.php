@@ -18,12 +18,13 @@ $user = 'root';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql = 'INSERT INTO mst_user(name,pass) VALUES (?,?)';
+$sql = 'INSERT INTO mst_user(name,pass) VALUES (:name,:pass)';
 $stmt = $dbh->prepare($sql);
-$data[] = $bbs_name;
-$data[] = $bbs_pass;
-$stmt->execute($data);
+$stmt->bindValue(':name', $bbs_name, PDO::PARAM_STR);
+$stmt->bindValue(':pass', $bbs_pass, PDO::PARAM_STR);
+$stmt->execute();
 
 $dbh = null;
 
@@ -36,6 +37,7 @@ exit();
 
 catch (Exception $e)
 {
+print $e;
 	print 'ただいま障害により大変ご迷惑をお掛けしております。';
 	exit();
 }

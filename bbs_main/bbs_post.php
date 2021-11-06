@@ -58,14 +58,15 @@ $user = 'root';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql = 'INSERT INTO mst_bbs(comment,image,name,replyno) VALUES (?,?,?,?)';
+$sql = 'INSERT INTO mst_bbs(comment,image,name,replyno) VALUES (:comment,:photo,:name,:replyno)';
 $stmt = $dbh->prepare($sql);
-$data[] = $bbs_comment;
-$data[] = $bbs_photo;
-$data[] = $bbs_name;
-$data[] = $bbs_replyno;
-$stmt->execute($data);
+$stmt->bindValue(':comment', $bbs_comment, PDO::PARAM_STR);
+$stmt->bindValue(':photo', $bbs_photo, PDO::PARAM_STR);
+$stmt->bindValue(':name', $bbs_name, PDO::PARAM_STR);
+$stmt->bindValue(':replyno', $bbs_replyno, PDO::PARAM_STR);
+$stmt->execute();
 
 $dbh = null;
 

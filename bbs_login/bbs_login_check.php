@@ -15,12 +15,13 @@ $user = 'root';
 $password = '';
 $dbh = new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql='SELECT name FROM mst_user WHERE name=? AND pass=?';
+$sql='SELECT name FROM mst_user WHERE name=:name AND pass=:pass';
 $stmt=$dbh->prepare($sql);
-$data[]=$bbs_name;
-$data[]=$bbs_pass;
-$stmt->execute($data);
+$stmt->bindValue(':name', $bbs_name, PDO::PARAM_STR);
+$stmt->bindValue(':pass', $bbs_pass, PDO::PARAM_STR);
+$stmt->execute();
 
 $dbh = null;
 
