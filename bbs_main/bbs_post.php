@@ -54,7 +54,7 @@ else
 }
 
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
-$user = 'root';
+$user = 'insertuser';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

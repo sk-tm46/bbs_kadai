@@ -4,14 +4,14 @@ try
 
 require_once('../common/common.php');
 
-$post=sanitize($_POST);
+$post=$_POST;
 $bbs_name=$post['name'];
 $bbs_pass=$post['pass'];
 
 $bbs_pass=md5($bbs_pass);
 
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
-$user = 'root';
+$user = 'selectuser';
 $password = '';
 $dbh = new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -29,9 +29,7 @@ $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if($rec==false)
 {
-	echo $rec;
-	echo $bbs_name;
-	echo $bbs_pass;
+print $bbs_pass;
 	print 'ユーザー名またはパスワードが間違っています。<br />';
 	print '<a href="bbs_login.html">戻る</a>';
 }

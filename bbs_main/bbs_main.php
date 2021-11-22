@@ -32,7 +32,7 @@ else
 <?php
 try{
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
-$user = 'root';
+$user = 'selectuser';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

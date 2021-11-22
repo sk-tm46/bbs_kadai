@@ -9,18 +9,18 @@ require_once('../common/common.php');
 $bbs_pass = $_POST['pass'];
 $_POST['pass'] = md5($bbs_pass);
 
-$post=sanitize($_POST);
+$post=$_POST;
 $bbs_name=$post['name'];
 $bbs_pass=$post['pass'];
 
 $dsn = 'mysql:dbname=bbs;host=localhost;charset=utf8';
-$user = 'root';
+$user = 'insertuser';
 $password = '';
 $dbh = new PDO($dsn, $user, $password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql = 'INSERT INTO mst_user(name,pass) VALUES (:name,:pass)';
+$sql = "INSERT INTO mst_user(name,pass) VALUES (:name,:pass)";
 $stmt = $dbh->prepare($sql);
 $stmt->bindValue(':name', $bbs_name, PDO::PARAM_STR);
 $stmt->bindValue(':pass', $bbs_pass, PDO::PARAM_STR);
@@ -30,6 +30,7 @@ $dbh = null;
 
 // ステータスコードを出力
 http_response_code( 301 ) ;
+
 // リダイレクト
 header( "Location: bbs_post_done.php" ) ;
 exit();
