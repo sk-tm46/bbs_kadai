@@ -35,10 +35,11 @@ print $bbs_pass;
 }
 else
 {
+	ini_set("session.cookie_secure", 1);
 	session_start();
 	$_SESSION['member_login']=1;
 	$_SESSION['member_name']=$rec['name'];
-	header('Location: ..\bbs_main\bbs_main.php');
+	header('Location: ..\bbs_main\bbs_session.php');
 	exit();
 }
 }

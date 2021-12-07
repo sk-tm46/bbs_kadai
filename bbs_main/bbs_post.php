@@ -1,8 +1,8 @@
 <?php
 try
 {
+ini_set("session.cookie_secure", 1);
 session_start();
-session_regenerate_id(true);
 require_once('../common/common.php');
 
 $post=sanitize($_POST);

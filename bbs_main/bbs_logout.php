@@ -1,4 +1,5 @@
 <?php
+ini_set("session.cookie_secure", 1);
 session_start();
 $_SESSION=array();
 if(isset($_COOKIE[session_name()])==true)

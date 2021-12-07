@@ -1,4 +1,5 @@
 <?php 
+ini_set("session.cookie_secure", 1);
 session_start();
 session_regenerate_id(true); 
 ?>
@@ -20,14 +21,12 @@ if(isset($_SESSION['member_login'])==false)
 	print $_SESSION['member_name'];
 	print 'さん';
 	print '<a href="..\bbs_login\bbs_login.html"> ログイン </a><br/>';
-	print '<br/>';
 }
 else
 {
 	print $_SESSION['member_name'];
 	print 'さん';
 	print '<a href="bbs_logout.php"> ログイン中</a><br/>';
-	print '<br/>';
 } ?>
 <?php
 try{

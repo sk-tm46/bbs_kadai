@@ -1,8 +1,8 @@
 <?php
 try
 {
+ini_set("session.cookie_secure", 1);
 session_start();
-session_regenerate_id(true);
 
 require_once('../common/common.php');
 
@@ -38,7 +38,6 @@ exit();
 
 catch (Exception $e)
 {
-print $e;
 	print 'ただいま障害により大変ご迷惑をお掛けしております。';
 	exit();
 }
