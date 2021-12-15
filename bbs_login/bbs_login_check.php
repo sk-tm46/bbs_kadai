@@ -4,7 +4,7 @@ try
 
 require_once('../common/common.php');
 
-$post=$_POST;
+$post = sanitize($_POST);
 $bbs_name=$post['name'];
 $bbs_pass=$post['pass'];
 
@@ -39,6 +39,8 @@ else
 	session_start();
 	$_SESSION['member_login']=1;
 	$_SESSION['member_name']=$rec['name'];
+	header("X-XSS-Protection: 1; mode=block");
+	header("Content-Security-Policy: reflected-xss block");
 	header('Location: ..\bbs_main\bbs_session.php');
 	exit();
 }

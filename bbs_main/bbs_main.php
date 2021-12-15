@@ -2,6 +2,8 @@
 ini_set("session.cookie_secure", 1);
 session_start();
 session_regenerate_id(true); 
+header("X-XSS-Protection: 1; mode=block");
+header("Content-Security-Policy: reflected-xss block");
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,6 +58,7 @@ while(true)
 	{
 		break;
 	}
+	$rec = sanitize($rec);
 	$bbs_post_no[$count] = $rec['no'];
 	$bbs_post_name[$count] = $rec['name'];
 	$bbs_post_date[$count] = $rec['date'];

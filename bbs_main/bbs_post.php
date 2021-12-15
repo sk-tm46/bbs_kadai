@@ -3,6 +3,8 @@ try
 {
 ini_set("session.cookie_secure", 1);
 session_start();
+header("X-XSS-Protection: 1; mode=block");
+header("Content-Security-Policy: reflected-xss block");
 require_once('../common/common.php');
 
 $post=sanitize($_POST);

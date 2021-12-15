@@ -1,6 +1,8 @@
 <?php
 ini_set("session.cookie_secure", 1);
 session_start();
+header("X-XSS-Protection: 1; mode=block");
+header("Content-Security-Policy: reflected-xss block");
 $_SESSION=array();
 if(isset($_COOKIE[session_name()])==true)
 {
